@@ -132,13 +132,13 @@ def train(epoch):
         recons_audio1 = recons_audio1.view(-1, in_out_size)#(5908,256)
         target_g1 = datasets.one_hot_decode(target_g1.data, 2)[:,rfield_size:]
         target_g1 = Variable(target_g1.cuda()).view(-1)
-	g1_reconst_loss = CEloss(recons_audio1, target_g1)
+	g1_reconst_loss = CEloss(recons_audio1[:target_g1.shape[0]], target_g1)
 
         recons_audio2 = g1(fake_audio1)#(1,5908, 256)
         recons_audio2 = recons_audio2.view(-1, in_out_size)#(5908,256)
         target_g2 = datasets.one_hot_decode(target_g2.data, 2)[:,rfield_size:]
         target_g2 = Variable(target_g2.cuda()).view(-1)
-	g2_reconst_loss = CEloss(recons_audio2,target_g2)
+	g2_reconst_loss = CEloss(recons_audio2[:target_g2.shape[0]], target_g2)
 	#G-3. compute total loss and optimize
 	g_loss = g1_gan_loss + g2_gan_loss + g1_reconst_loss + g2_reconst_loss
 	g1.zero_grad()
