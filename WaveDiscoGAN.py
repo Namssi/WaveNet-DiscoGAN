@@ -3,7 +3,6 @@ import torch.nn as nn
 from torch.autograd import Variable
 import numpy as np
 import os
-import argparse
 from network.wavenet import WaveNet
 from network.disnet import Discriminator
 import time
@@ -11,9 +10,6 @@ import datasets
 import config
 import wave_gen
 
-
-parser = argparse.ArgumentParser(description='PyTorch WaveNet + DiscoGAN')
-args = parser.parse_args()
 
 ############arguments assighment: TODO use config file#########################
 in_out_size = 256

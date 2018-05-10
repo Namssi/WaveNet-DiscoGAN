@@ -1,4 +1,5 @@
 import argparse
+import numpy as np
 
 rser = argparse.ArgumentParser(description='PyTorch WaveNet + DiscoGAN')
 parser.add_argument('--epochs', type=int, default=1000, metavar='N',
